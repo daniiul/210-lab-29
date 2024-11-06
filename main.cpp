@@ -32,9 +32,9 @@ int main()
         // Insert each town function into its corresponding list in the array for the town
     string temp;
     string town;
-    string home;
-    string business;
-    string infrastructure;
+    vector<string> names;
+    vector<string> businesses;
+    vector<string> infrastructure;
     int i = 0;
     while(getline(inputFile, temp))
     {
@@ -44,18 +44,21 @@ int main()
         }
         else if(i == 1)
         {
+            names.push_back(temp);
             list<string> item;
             item.push_back(temp);
             region[town][0] = item;
         }
         else if (i == 2)
         {
+            businesses.push_back(temp);
             list<string> item;
             item.push_back(temp);
             region[town][1] = item;
         }
         else if (i == 3)
         {
+            infrastructure.push_back(temp);
             list<string> item;
             item.push_back(temp);
             region[town][3] = item;
@@ -66,18 +69,52 @@ int main()
     cout << "Closing file!" << endl;
     inputFile.close();
 
+    srand(time(0));
+
     // Begin a time-based simulation for changes in different towns
         // For 25 time intervals
     for(int i = 0; i < 25; i++)
     {
-        srand(time(0));
+        int prob = rand() % 100 + 1;  // returns random number 1-100
             // Iterate through each town in map
+            for (auto it : region)
+            {
                 // For each town, simulate changes
                     // Randomly decide if a new family moves in, business open up, or infrastructure development is to be added to the town
                         // If adding, generate or select a new family, business, or infrastructure development to add to the list
                         // If removing, select a random family, business, or infrastructure development to remove from list
                     // Print the changes for this interval, e.g., "The {family name} name moved in to {town name}" or "The {business name} has opened up in {town name}"
-            cout << "new event in town x" << endl;
+                if (prob <= 20)
+                {
+                    int randval = rand() % it->second[0]
+                    cout <<  "      " << list.back_name() << " (at rear) has left the line" << endl;
+                    list.pop_back();
+                }
+                if (prob <= 60)
+                {
+
+                    cout << "      " << na << " joins the line" << endl;
+                }
+                if (prob <= 40) {
+                    cout <<  "      " << list.front_name() << " is served" << endl;
+                    list.pop_front();
+                }
+                if (prob <= 10)
+                {
+                    int value = rand() % (list.length_of_list());
+                    cout <<  "      " << list.name_at_pos(value) << " has left the line" << endl;
+                    list.delete_pos(value + 1);
+                }
+                if (prob <= 10)
+                {
+                    Person *temp = new Person();
+                    string na = temp->getName();
+                    cout <<  "      " << na << " (vip) joins the front of the line" << endl;
+                    list.push_front(temp);
+                }
+            }
+
+
             // Simulate more complex town changes
             // random events impacting towns
             // earthquakes, housing crisis, recession

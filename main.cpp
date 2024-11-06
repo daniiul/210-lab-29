@@ -64,7 +64,7 @@ int main()
             list<string> item;
             item.push_back(temp);
             region[town][2] = item;
-
+            i = 0;
         }
         i++;
     }
@@ -89,6 +89,7 @@ int main()
                         // If adding, generate or select a new family, business, or infrastructure development to add to the list
                         // If removing, select a random family, business, or infrastructure development to remove from list
                     // Print the changes for this interval, e.g., "The {family name} name moved in to {town name}" or "The {business name} has opened up in {town name}"
+                cout << i << endl;
                 if (prob <= 60)
                 {
                     string name = names[rand() % names.size()];
@@ -115,6 +116,13 @@ int main()
                     auto iter = it.second[1].begin();
                     advance(iter, randval);
                     cout <<  "      " << *iter << " business has shut down in " << it.first << endl;
+                }
+                if (prob <= 15)
+                {
+                    int randval = rand() % it.second[1].size();
+                    auto iter = it.second[2].begin();
+                    advance(iter, randval);
+                    cout <<  "      " << *iter << " has closed down in " << it.first << endl;
                 }
 
             }

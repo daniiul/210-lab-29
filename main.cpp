@@ -14,7 +14,7 @@ using namespace std;
 int main()
 {
     // Initialize a map to store information on a town, each associated with an array of lists for homes, businesses, and infrastructure development
-    cout << "map initiallized!" << endl;
+
 
     // Open an external file to read initial data about towns
         // If file does not open, print an error and exit

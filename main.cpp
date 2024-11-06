@@ -5,6 +5,8 @@
 #include <map>
 #include <fstream>
 #include <list>
+#include <vector>
+#include <ctime>
 
 using namespace std;
 
@@ -84,20 +86,28 @@ int main()
                         // If adding, generate or select a new family, business, or infrastructure development to add to the list
                         // If removing, select a random family, business, or infrastructure development to remove from list
                     // Print the changes for this interval, e.g., "The {family name} name moved in to {town name}" or "The {business name} has opened up in {town name}"
+                if (prob <= 25)
+                {
+                    int randval = rand() % it.second[0].size();
+                    auto iter = it.second[0].begin();
+                    advance(iter, randval);
+                    cout <<  "      " << *iter << " family has left " << it.first << endl;
+                }
                 if (prob <= 20)
                 {
-                    int randval = rand() % it->second[0]
-                    cout <<  "      " << list.back_name() << " (at rear) has left the line" << endl;
-                    list.pop_back();
+                    int randval = rand() % it.second[1].size();
+                    auto iter = it.second[1].begin();
+                    advance(iter, randval);
+                    cout <<  "      " << *iter << " business has shut down in " << it.first << endl;
                 }
-                if (prob <= 60)
+                if (prob <= 70)
                 {
-
-                    cout << "      " << na << " joins the line" << endl;
+                    string name = names[rand() % names.size()];
+                    cout <<  "      " << name << "family has moved to " << it.first << endl;
                 }
-                if (prob <= 40) {
-                    cout <<  "      " << list.front_name() << " is served" << endl;
-                    list.pop_front();
+                if (prob <= 60) {
+                    string name = names[rand() % names.size()];
+                    cout <<  "      " << name << "family has moved to " << it.first << endl;
                 }
                 if (prob <= 10)
                 {

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <list>
 
 using namespace std;
 
@@ -14,12 +15,13 @@ using namespace std;
 int main()
 {
     // Initialize a map to store information on a town, each associated with an array of lists for homes, businesses, and infrastructure development
-
+     map <string, list<string>[3]> region;
 
     // Open an external file to read initial data about towns
         // If file does not open, print an error and exit
-    bool fileopen = true;
-    if(!fileopen)
+    ifstream inputFile("data.txt");
+
+    if(!inputFile.is_open())
     {
         cout << "File failed to open!" << endl;
         return 0;
@@ -28,7 +30,17 @@ int main()
     // Read data from file and populate map
         // For each line, extract town name, homes, businesses, and infrastructure developments
         // Insert each town function into its corresponding list in the array for the town
-
+    string town;
+    string home;
+    string business;
+    string infrastructure;
+    int i = 0;
+    while(getline(inputFile, temp))
+    {
+        if(i == 0)
+        {
+        }
+    }
     // Close the file
     cout << "Closing file!" << endl;
 

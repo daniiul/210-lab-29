@@ -63,8 +63,10 @@ int main()
             infrastructure.push_back(temp);
             list<string> item;
             item.push_back(temp);
-            region[town][3] = item;
+            region[town][2] = item;
+
         }
+        i++;
     }
 
     // Close the file
@@ -79,6 +81,7 @@ int main()
     {
         int prob = rand() % 100 + 1;  // returns random number 1-100
             // Iterate through each town in map
+
             for (auto it : region)
             {
                 // For each town, simulate changes
@@ -86,6 +89,19 @@ int main()
                         // If adding, generate or select a new family, business, or infrastructure development to add to the list
                         // If removing, select a random family, business, or infrastructure development to remove from list
                     // Print the changes for this interval, e.g., "The {family name} name moved in to {town name}" or "The {business name} has opened up in {town name}"
+                if (prob <= 60)
+                {
+                    string name = names[rand() % names.size()];
+                    cout <<  "      " << name << "family has moved to " << it.first << endl;
+                }
+                if (prob <= 55) {
+                    string business = businesses[rand() % businesses.size()];
+                    cout <<  "      " << business << " has opened up shop in " << it.first << endl;
+                }
+                if (prob <= 50) {
+                    string infra = infrastructure[rand() % infrastructure.size()];
+                    cout <<  "      " << infra << " has begun construction in " << it.first << endl;
+                }
                 if (prob <= 25)
                 {
                     int randval = rand() % it.second[0].size();
@@ -100,28 +116,7 @@ int main()
                     advance(iter, randval);
                     cout <<  "      " << *iter << " business has shut down in " << it.first << endl;
                 }
-                if (prob <= 70)
-                {
-                    string name = names[rand() % names.size()];
-                    cout <<  "      " << name << "family has moved to " << it.first << endl;
-                }
-                if (prob <= 60) {
-                    string name = names[rand() % names.size()];
-                    cout <<  "      " << name << "family has moved to " << it.first << endl;
-                }
-                if (prob <= 10)
-                {
-                    int value = rand() % (list.length_of_list());
-                    cout <<  "      " << list.name_at_pos(value) << " has left the line" << endl;
-                    list.delete_pos(value + 1);
-                }
-                if (prob <= 10)
-                {
-                    Person *temp = new Person();
-                    string na = temp->getName();
-                    cout <<  "      " << na << " (vip) joins the front of the line" << endl;
-                    list.push_front(temp);
-                }
+
             }
 
 

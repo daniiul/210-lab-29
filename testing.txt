@@ -1,3 +1,12 @@
+For the testing of the town_simulation function, I will create a sample map representing a region with one town to see how the simulation runs over a period of 25 time intervals with each interval representing 2.4 months and 25 years in total. 
+The map features only one town for ease of accessibility, so it is easier to see what events happens to the town over each interval.
+A database of family names, businesses, and infrastructure projects will be read into three vector arrays to be also fed into the function when testing begins.
+
+Extra output statements would also be added within throughout the function to check what happens at each step of the simulation and when.
+
+void town_simulation(map <string, list<string>[3]>& region, vector<string>& names, vector<string>& businesses,  vector<string>& infrastructure, int intervals);
+
+
 // COMSC-210 | 210-lab-29 | Daniil Malakhov
 // Include header files for handling, data structures, strings, algorithms, etc.
 #include <string>
@@ -36,7 +45,7 @@ int main()
         // For each line, extract town name, homes, businesses, and infrastructure developments
         // Insert each town function into its corresponding list in the array for the town
     string temp;
-    string town;
+    string town = "Walnut Creek";
     vector<string> names;
     vector<string> businesses;
     vector<string> infrastructure;
@@ -45,34 +54,31 @@ int main()
     {
         if(i == 0)
         {
-            town = temp;
+            // skip the part where the town name is read from file
             i++;
         }
         else if(i == 1)
         {
             names.push_back(temp);
-            list<string> item;
-            item.push_back(temp);
-            region[town][0] = item;
             i++;
         }
         else if (i == 2)
         {
             businesses.push_back(temp);
-            list<string> item;
-            item.push_back(temp);
-            region[town][1] = item;
             i++;
         }
         else if (i == 3)
         {
             infrastructure.push_back(temp);
-            list<string> item;
-            item.push_back(temp);
-            region[town][2] = item;
             i = 0;
+
         }
     }
+    
+    // sample inputs for the map
+    region[town][0] = "Smiths";
+    region[town][1] = "Mcdonalds";
+    region[town][2] = "Train station";
 
     // Close the file
     cout << "Closing file!" << endl;
@@ -97,6 +103,8 @@ void town_simulation(map <string, list<string>[3]>& region, vector<string>& name
         int prob = rand() % 100 + 1;  // returns random number 1-100
             // Iterate through each town in map
         int ran = rand() % 25;
+	
+	cout << "Simulation Number: " << i << endl;
 
         for (auto it : region)
         {

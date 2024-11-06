@@ -43,6 +43,8 @@ int main()
         if(i == 0)
         {
             town = temp;
+            cout << "yes" << endl;
+            i++;
         }
         else if(i == 1)
         {
@@ -50,6 +52,7 @@ int main()
             list<string> item;
             item.push_back(temp);
             region[town][0] = item;
+            i++;
         }
         else if (i == 2)
         {
@@ -57,6 +60,7 @@ int main()
             list<string> item;
             item.push_back(temp);
             region[town][1] = item;
+            i++;
         }
         else if (i == 3)
         {
@@ -66,7 +70,6 @@ int main()
             region[town][2] = item;
             i = 0;
         }
-        i++;
     }
 
     // Close the file
@@ -81,63 +84,95 @@ int main()
     {
         int prob = rand() % 100 + 1;  // returns random number 1-100
             // Iterate through each town in map
+        int ran = rand() % 25;
 
+        for (auto it : region)
+        {
+            // For each town, simulate changes
+                // Randomly decide if a new family moves in, business open up, or infrastructure development is to be added to the town
+                    // If adding, generate or select a new family, business, or infrastructure development to add to the list
+                    // If removing, select a random family, business, or infrastructure development to remove from list
+                // Print the changes for this interval, e.g., "The {family name} name moved in to {town name}" or "The {business name} has opened up in {town name}"
+            if (prob <= 60)
+            {
+                string name = names[rand() % names.size()];
+                cout <<  "      " << name << "family has moved to " << it.first << endl;
+            }
+            if (prob <= 55) {
+                string business = businesses[rand() % businesses.size()];
+                cout <<  "      " << business << " has opened up shop in " << it.first << endl;
+            }
+            if (prob <= 50) {
+                string infra = infrastructure[rand() % infrastructure.size()];
+                cout <<  "      " << infra << " has begun construction in " << it.first << endl;
+            }
+            if (prob <= 25)
+            {
+                int randval = rand() % it.second[0].size();
+                auto iter = it.second[0].begin();
+                advance(iter, randval);
+                cout <<  "      " << *iter << " family has left " << it.first << endl;
+            }
+            if (prob <= 20)
+            {
+                int randval = rand() % it.second[1].size();
+                auto iter = it.second[1].begin();
+                advance(iter, randval);
+                cout <<  "      " << *iter << " business has shut down in " << it.first << endl;
+            }
+            if (prob <= 15)
+            {
+                int randval = rand() % it.second[1].size();
+                auto iter = it.second[2].begin();
+                advance(iter, randval);
+                cout <<  "      " << *iter << " has closed down in " << it.first << endl;
+            }
+
+        }
+
+
+        // Simulate more complex town changes
+        // random events impacting towns
+        // earthquakes, housing crisis, recession
+        if(ran == 10)
+        {
+            cout << "Major earthquake causes ruin throughout region!" << endl;
             for (auto it : region)
             {
-                // For each town, simulate changes
-                    // Randomly decide if a new family moves in, business open up, or infrastructure development is to be added to the town
-                        // If adding, generate or select a new family, business, or infrastructure development to add to the list
-                        // If removing, select a random family, business, or infrastructure development to remove from list
-                    // Print the changes for this interval, e.g., "The {family name} name moved in to {town name}" or "The {business name} has opened up in {town name}"
-                cout << i << endl;
-                if (prob <= 60)
-                {
-                    string name = names[rand() % names.size()];
-                    cout <<  "      " << name << "family has moved to " << it.first << endl;
-                }
-                if (prob <= 55) {
-                    string business = businesses[rand() % businesses.size()];
-                    cout <<  "      " << business << " has opened up shop in " << it.first << endl;
-                }
-                if (prob <= 50) {
-                    string infra = infrastructure[rand() % infrastructure.size()];
-                    cout <<  "      " << infra << " has begun construction in " << it.first << endl;
-                }
-                if (prob <= 25)
-                {
-                    int randval = rand() % it.second[0].size();
-                    auto iter = it.second[0].begin();
-                    advance(iter, randval);
-                    cout <<  "      " << *iter << " family has left " << it.first << endl;
-                }
-                if (prob <= 20)
-                {
-                    int randval = rand() % it.second[1].size();
-                    auto iter = it.second[1].begin();
-                    advance(iter, randval);
-                    cout <<  "      " << *iter << " business has shut down in " << it.first << endl;
-                }
-                if (prob <= 15)
-                {
-                    int randval = rand() % it.second[1].size();
-                    auto iter = it.second[2].begin();
-                    advance(iter, randval);
-                    cout <<  "      " << *iter << " has closed down in " << it.first << endl;
-                }
-
+                int randval = rand() % it.second[1].size();
+                auto iter = it.second[2].begin();
+                advance(iter, randval);
+                cout <<  "      " << *iter << " has closed down in " << it.first << endl;
             }
 
-
-            // Simulate more complex town changes
-            // random events impacting towns
-            // earthquakes, housing crisis, recession
-            if(i == 10)
+        }
+        if(ran == 5)
+        {
+            cout << "Major housing crisis has hit region!" << endl;
+            for (auto it : region)
             {
-                cout << "major earthquake causes ruin throughout region!" << endl;
+                int randval = rand() % it.second[1].size();
+                auto iter = it.second[0].begin();
+                advance(iter, randval);
+                cout <<  "      " << *iter << " has closed down in " << it.first << endl;
             }
+        }
+        if(ran == 0)
+        {
+            cout << "Economic depression has hit the region!" << endl;
+            for (auto it : region)
+            {
+                int randval = rand() % it.second[1].size();
+                auto iter = it.second[1].begin();
+                advance(iter, randval);
+                cout <<  "      " << *iter << " has closed down in " << it.first << endl;
+            }
+        }
+    // Wait or pause briefly to simulate the passage of time between intervals
+
+    }
 
             // Wait or pause briefly to simulate the passage of time between intervals
-    }
     cout << "simulation complete! " << endl;
 // End of main function
 }

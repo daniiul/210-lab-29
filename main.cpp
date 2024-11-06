@@ -44,30 +44,33 @@ int main()
         }
         else if(i == 1)
         {
-
-            home = temp;
+            list<string> item;
+            item.push_back(temp);
+            region[town][0] = item;
         }
         else if (i == 2)
         {
-            business = temp;
+            list<string> item;
+            item.push_back(temp);
+            region[town][1] = item;
         }
         else if (i == 3)
         {
-            infrastructure = temp;
             list<string> item;
-
-            region[town].second[0].push_back(home);
-            region[town].second[1].push_back(business);
-            region[town].second[2].push_back(infrastructure);
+            item.push_back(temp);
+            region[town][3] = item;
         }
     }
+
     // Close the file
     cout << "Closing file!" << endl;
+    inputFile.close();
 
     // Begin a time-based simulation for changes in different towns
         // For 25 time intervals
     for(int i = 0; i < 25; i++)
     {
+        srand(time(0));
             // Iterate through each town in map
                 // For each town, simulate changes
                     // Randomly decide if a new family moves in, business open up, or infrastructure development is to be added to the town

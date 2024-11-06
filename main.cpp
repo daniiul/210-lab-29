@@ -6,7 +6,9 @@
 #include <fstream>
 #include <list>
 #include <vector>
+#include <chrono>
 #include <ctime>
+#include <thread>
 
 using namespace std;
 
@@ -142,9 +144,8 @@ int main()
                 int randval = rand() % it.second[1].size();
                 auto iter = it.second[2].begin();
                 advance(iter, randval);
-                cout <<  "      " << *iter << " has closed down in " << it.first << endl;
+                cout <<  "      " << *iter << " has been destroyed " << it.first << " due to an earthquake!" << endl;
             }
-
         }
         if(ran == 5)
         {
@@ -154,7 +155,7 @@ int main()
                 int randval = rand() % it.second[1].size();
                 auto iter = it.second[0].begin();
                 advance(iter, randval);
-                cout <<  "      " << *iter << " has closed down in " << it.first << endl;
+                cout <<  "      " << *iter << " has left " << it.first << " due to an economic depression!" << endl;
             }
         }
         if(ran == 0)
@@ -165,11 +166,11 @@ int main()
                 int randval = rand() % it.second[1].size();
                 auto iter = it.second[1].begin();
                 advance(iter, randval);
-                cout <<  "      " << *iter << " has closed down in " << it.first << endl;
+                cout <<  "      " << *iter << " has closed down in " << it.first << " due to a financial crisis!" << endl;
             }
         }
     // Wait or pause briefly to simulate the passage of time between intervals
-
+    this_thread::sleep_for(chrono::milliseconds(100));
     }
 
             // Wait or pause briefly to simulate the passage of time between intervals

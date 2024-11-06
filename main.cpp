@@ -13,7 +13,8 @@
 using namespace std;
 
 // Define a function to simulate a town and its functions
-    // Arguments: map of a town, number of intervals
+    // Arguments: map of a town, a vector array database of family names, a vector array database of businesses, a vector array database of infrastructure projects, number of intervals
+void town_simulation()
 
 // Define main function
 int main()
@@ -45,7 +46,6 @@ int main()
         if(i == 0)
         {
             town = temp;
-            cout << "yes" << endl;
             i++;
         }
         else if(i == 1)

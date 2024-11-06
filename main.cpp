@@ -14,7 +14,7 @@ using namespace std;
 
 // Define a function to simulate a town and its functions
     // Arguments: map of a town, a vector array database of family names, a vector array database of businesses, a vector array database of infrastructure projects, number of intervals
-void town_simulation()
+void town_simulation(map <string, list<string>[3]>& region, vector<string>& names, vector<string>& businesses,  vector<string>& infrastructure, int intervals);
 
 // Define main function
 int main()
@@ -78,11 +78,21 @@ int main()
     cout << "Closing file!" << endl;
     inputFile.close();
 
+    // start simulation
+    town_simulation(region, names, businesses, infrastructure, 25);
+
+            // Wait or pause briefly to simulate the passage of time between intervals
+    cout << "simulation complete! " << endl;
+// End of main function
+}
+
+void town_simulation(map <string, list<string>[3]>& region, vector<string>& names, vector<string>& businesses,  vector<string>& infrastructure, int intervals)
+{
     srand(time(0));
 
     // Begin a time-based simulation for changes in different towns
         // For 25 time intervals
-    for(int i = 0; i < 25; i++)
+    for(int i = 0; i < intervals; i++)
     {
         int prob = rand() % 100 + 1;  // returns random number 1-100
             // Iterate through each town in map
@@ -173,7 +183,4 @@ int main()
     this_thread::sleep_for(chrono::milliseconds(100));
     }
 
-            // Wait or pause briefly to simulate the passage of time between intervals
-    cout << "simulation complete! " << endl;
-// End of main function
 }

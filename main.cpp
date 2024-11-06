@@ -30,6 +30,7 @@ int main()
     // Read data from file and populate map
         // For each line, extract town name, homes, businesses, and infrastructure developments
         // Insert each town function into its corresponding list in the array for the town
+    string temp;
     string town;
     string home;
     string business;
@@ -39,6 +40,25 @@ int main()
     {
         if(i == 0)
         {
+            town = temp;
+        }
+        else if(i == 1)
+        {
+
+            home = temp;
+        }
+        else if (i == 2)
+        {
+            business = temp;
+        }
+        else if (i == 3)
+        {
+            infrastructure = temp;
+            list<string> item;
+
+            region[town].second[0].push_back(home);
+            region[town].second[1].push_back(business);
+            region[town].second[2].push_back(infrastructure);
         }
     }
     // Close the file

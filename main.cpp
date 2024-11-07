@@ -15,6 +15,10 @@ using namespace std;
 // Define a function to simulate a town and its functions
     // Arguments: map of a town, a vector array database of family names, a vector array database of businesses, a vector array database of infrastructure projects, number of intervals
 void town_simulation(map <string, list<string>[3]>& region, vector<string>& names, vector<string>& businesses,  vector<string>& infrastructure, int intervals);
+// Define a function to read input from file and push it correctly to the map
+    // Arguments: map of a town, a vector array database of family names, a vector array database of businesses, a vector array database of infrastructure projects, a string representing temp, a string representing town name
+void read_file(map <string, list<string>[3]>& region, vector<string>& names, vector<string>& businesses,  vector<string>& infrastructure);
+
 
 // Define main function
 int main()
@@ -22,61 +26,11 @@ int main()
     // Initialize a map to store information on a town, each associated with an array of lists for homes, businesses, and infrastructure development
      map <string, list<string>[3]> region;
 
-    // Open an external file to read initial data about towns
-        // If file does not open, print an error and exit
-    ifstream inputFile("data.txt");
-
-    if(!inputFile.is_open())
-    {
-        cout << "File failed to open!" << endl;
-        return 0;
-    }
-
-    // Read data from file and populate map
-        // For each line, extract town name, homes, businesses, and infrastructure developments
-        // Insert each town function into its corresponding list in the array for the town
-    string temp;
-    string town;
     vector<string> names;
     vector<string> businesses;
     vector<string> infrastructure;
-    int i = 0;
-    while(getline(inputFile, temp))
-    {
-        if(i == 0)
-        {
-            town = temp;
-            i++;
-        }
-        else if(i == 1)
-        {
-            names.push_back(temp);
-            list<string> item;
-            item.push_back(temp);
-            region[town][0] = item;
-            i++;
-        }
-        else if (i == 2)
-        {
-            businesses.push_back(temp);
-            list<string> item;
-            item.push_back(temp);
-            region[town][1] = item;
-            i++;
-        }
-        else if (i == 3)
-        {
-            infrastructure.push_back(temp);
-            list<string> item;
-            item.push_back(temp);
-            region[town][2] = item;
-            i = 0;
-        }
-    }
 
-    // Close the file
-    cout << "Closing file!" << endl;
-    inputFile.close();
+    read_file(region, names, businesses, infrastructure);
 
     // start simulation
     town_simulation(region, names, businesses, infrastructure, 25);
@@ -183,4 +137,60 @@ void town_simulation(map <string, list<string>[3]>& region, vector<string>& name
     this_thread::sleep_for(chrono::milliseconds(100));
     }
 
+}
+
+void read_file(map <string, list<string>[3]>& region, vector<string>& names, vector<string>& businesses,  vector<string>& infrastructure)
+{
+    // Open an external file to read initial data about towns
+        // If file does not open, print an error and exit
+    ifstream inputFile("data.txt");
+
+    if(!inputFile.is_open())
+    {
+        cout << "File failed to open!" << endl;
+        return;
+    }
+
+    // Read data from file and populate map
+        // For each line, extract town name, homes, businesses, and infrastructure developments
+        // Insert each town function into its corresponding list in the array for the town
+    string temp;
+    string town;
+    int i = 0;
+    while(getline(inputFile, temp))
+    {
+        if(i == 0)
+        {
+            town = temp;
+            i++;
+        }
+        else if(i == 1)
+        {
+            names.push_back(temp);
+            list<string> item;
+            item.push_back(temp);
+            region[town][0] = item;
+            i++;
+        }
+        else if (i == 2)
+        {
+            businesses.push_back(temp);
+            list<string> item;
+            item.push_back(temp);
+            region[town][1] = item;
+            i++;
+        }
+        else if (i == 3)
+        {
+            infrastructure.push_back(temp);
+            list<string> item;
+            item.push_back(temp);
+            region[town][2] = item;
+            i = 0;
+        }
+    }
+
+    // Close the file
+    cout << "Closing file!" << endl;
+    inputFile.close();
 }

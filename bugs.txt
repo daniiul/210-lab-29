@@ -1,0 +1,10 @@
+-issue where the program would only read in one town name. Fixed by adding incrementing incrementor in while loop
+-infrastructure projects weren't being read into map. Issue because of incrementor that was inside the else if statement.
+-family names were being added to the business list during the simulation. Issue b/c the simulation was reading from family names array instead of business array. fixed.
+-input errors, extra spaces after each entry.
+-simulation wouldn't print names of businesses, families, or infrastructure projects due to compile error. Forgot pointer to iterators.
+-unknown variable in simulation for loop for intervals. Forgot to pass the variable in in the main function
+-read file function was accessing undeclared variables, forgot to pass in  temp and town string variables into function
+-unnecessasary passing in of string temp into read_file, could just declare it inside the function
+-unnecessasary passing in of string town as well into read_file, could just declare it inside the function
+-compile error when running read_file, attempted to return int when function has no returns

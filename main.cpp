@@ -62,7 +62,7 @@ void town_simulation(map <string, list<string>[3]>& region, vector<string>& name
             if (prob <= 60)
             {
                 string name = names[rand() % names.size()];
-                cout <<  "      " << name << "family has moved to " << it.first << endl;
+                cout <<  "      " << name << " family has moved to " << it.first << endl;
             }
             if (prob <= 55) {
                 string business = businesses[rand() % businesses.size()];
@@ -108,7 +108,7 @@ void town_simulation(map <string, list<string>[3]>& region, vector<string>& name
                 int randval = rand() % it.second[1].size();
                 auto iter = it.second[2].begin();
                 advance(iter, randval);
-                cout <<  "      " << *iter << " has been destroyed " << it.first << " due to an earthquake!" << endl;
+                cout <<  "      " << *iter << " has been destroyed in " << it.first << " due to an earthquake!" << endl;
             }
         }
         if(ran == 5)

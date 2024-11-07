@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1730883931 source:c:\users\guine\onedrive\documents\codeblocks\210-lab-29\main.cpp
+1730954977 source:c:\users\guine\onedrive\documents\codeblocks\210-lab-29\main.cpp
 	<string>
 	<iostream>
 	<map>
 	<fstream>
 	<list>
 	<vector>
+	<chrono>
 	<ctime>
+	<thread>
 
